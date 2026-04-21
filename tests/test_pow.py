@@ -12,10 +12,13 @@ def test_pow_base_positiva():
 
 
 # --- TU TURNO ---
-# Agregá tests para los siguientes casos:
-#   - Cualquier número elevado a 0 (resultado: 1)
-#   - Número elevado a 1 (resultado: el mismo número)
-#   - Base negativa con exponente par (resultado positivo)
-#   - Exponente decimal, ej: 9 ** 0.5 (raíz cuadrada)
-#
-# Pista: podés usar @pytest.mark.parametrize para probar varios casos a la vez.
+
+@pytest.mark.parametrize("a, b, expected", [
+    (5, 0, 1),           #numero elevado a 0 da 1
+    (7, 1, 7),           #numero elevado a 1 da el mismo numero
+    (-2, 2, 4),          #base negativa con exponente par da positivo
+    (9, 0.5, 3.0),       #exponente decimal para la raiz cuadrada
+])
+def test_pow_parametrizado(a, b, expected):
+    """prueba la funcion pow_ con varios casos"""
+    assert pow_(a, b) == expected
