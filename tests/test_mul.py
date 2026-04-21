@@ -12,11 +12,13 @@ def test_mul_positivos():
 
 
 # --- TU TURNO ---
-# Agregá tests para los siguientes casos:
-#   - Multiplicar por cero
-#   - Multiplicar dos números negativos (resultado positivo)
-#   - Multiplicar un positivo y un negativo (resultado negativo)
-#   - Multiplicar por 1 (elemento neutro)
-#   - Multiplicar dos decimales (float)
-#
-# Pista: podés usar @pytest.mark.parametrize para probar varios casos a la vez.
+@pytest.mark.parametrize("a, b, expected", [
+    (5, 0, 0),           #por cero
+    (-3, -4, 12),        #dos numeros negativos
+    (5, -2, -10),        #un positivo y un negativo
+    (7, 1, 7),           #por 1
+    (1.5, 2.0, 3.0),     #dos numeros decimales
+])
+def test_mul_parametrizado(a, b, expected):
+    """prueba la funcion mul con varios casos"""
+    assert mul(a, b) == expected
