@@ -12,14 +12,18 @@ def test_mean_lista_simple():
 
 
 # --- TU TURNO ---
-# Agregá tests para los siguientes casos:
-#   - Lista con un solo elemento (el resultado debe ser ese mismo elemento)
-#   - Lista con números negativos
-#   - Lista con números decimales (float)
-#   - Lista vacía → debe lanzar ValueError
-#
-# Pista: para testear excepciones usá pytest.raises:
-#
-# def test_mean_lista_vacia():
-#     with pytest.raises(ValueError):
-#         mean([])
+
+@pytest.mark.parametrize("values, expected", [
+    ([5], 5.0),                # lista con un solo elemento  
+    ([-2, -4, -6], -4.0),      # numeros negativos
+    ([1.5, 2.5, 5.0], 3.0),    # numeros decimales
+])
+def test_mean_parametrizado(values, expected):
+    """prueba la funcion mean con listas de distintos tipos"""
+    assert mean(values) == expected
+
+
+def test_mean_lista_vacia():
+    """lanza ValueError si le pasamos una lista vacia"""
+    with pytest.raises(ValueError):
+        mean([])
